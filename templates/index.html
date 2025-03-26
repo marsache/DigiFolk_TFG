@@ -1,0 +1,38 @@
+<head>
+    <title>First Title</title>
+</head>
+
+<body>
+    <h1>Segmenter</h1>
+    <textarea id="song_title">Song title</textarea>
+    <button onclick="performPost()">Segment</button>
+</body>
+<div id="responseContainer">
+    <p id="responseText"></p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<script>
+    function showOutput(result) {
+        document.getElementById("responseText").innerText = result;
+    }
+
+    function performPost() {
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('analyst_method') }}",
+            data: {"name" : "yoko"},
+            success: function (response){
+                //let resultText = response.result;
+                let resultText = "Verses: " + response.Verses;
+                resultText += "\n\n";
+                resultText += "Syllables: " + response.Syllables;
+                showOutput(resultText);
+            },
+            error: function () {
+                showOutput("An error occurred.");
+            }
+        })
+    }
+</script>
