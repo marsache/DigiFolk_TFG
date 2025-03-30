@@ -13,13 +13,29 @@ def analyst_method():
     if request.method == 'POST':
         print(request.form)
 
-        answer = analyst("Venid, pastorcitos, venid adorar al Rey de los cielos que_ha nacido ya.")
+        with open('InfoJson.json', 'r', encoding="utf8") as file:
+            data = json.load(file)
 
-        answerjson = json.loads(answer)
+            song_title = request.form.get('songTitle')
 
-        print(answerjson)
+            lyrics = data.get(song_title)
 
-        return answerjson
+            print(song_title)
+            print(lyrics)
+            
+            if lyrics is not None:
+
+                answer = analyst(lyrics)
+
+                answerjson = json.loads(answer)
+
+                print(answerjson)
+
+                return answerjson
+            
+            else:
+                return {"Error": f"Title '{song_title}' not found in the JSON data."}
+        
 
 if __name__ == '__main__':
     app.run(

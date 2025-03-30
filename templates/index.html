@@ -4,7 +4,8 @@
 
 <body>
     <h1>Segmenter</h1>
-    <textarea id="song_title">Song title</textarea>
+    <p>Please, introduce the name of the song.</p>
+    <input value="la calandria" type="text" id="segmenterTitle" name="segmenterTitle" required minlength="4" maxlength="20" size="10" />
     <button onclick="performPost()">Segment</button>
 </body>
 <div id="responseContainer">
@@ -19,10 +20,11 @@
     }
 
     function performPost() {
+        let segmenterTitle = document.getElementById("segmenterTitle").value;
         $.ajax({
             type: "POST",
             url: "{{ url_for('analyst_method') }}",
-            data: {"name" : "yoko"},
+            data: {"songTitle": segmenterTitle},
             success: function (response){
                 //let resultText = response.result;
                 let resultText = "Verses: " + response.Verses;
