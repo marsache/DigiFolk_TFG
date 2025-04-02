@@ -2,17 +2,17 @@
 
 ## Creación del modelo de análisis de textos
 - Instalar [Ollama](https://ollama.com/)
-- Comando para crear el modelo de análisis:
+- Comando para crear el modelo de segmentación (desde el directorio segmenter_model):
   ```
-  ollama create analyst -f ./Modelfile
+  ollama create segmenter -f ./Modelfile
   ```
 - Comando para utilizar el modelo de conversación desde terminal:
   ```
-  ollama run analyst
+  ollama run segmenter
   ```
 - Comando para eliminar el modelo:
   ```
-  ollama rm analyst
+  ollama rm segmenter
   ```
 
 ## Referencias

@@ -20,3 +20,4 @@ Solución propuesta: uso de reflexión para modificar la respuesta definitiva de
 
 - Reflexión
 - Comparación de canciones
+- Crear distintos modelos "analyst" con distintos modelos base y comparar resultados (Llama, Mistral...)

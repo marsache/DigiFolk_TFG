@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from model import analyst
+from model import segmenter
 import json
 
 app = Flask(__name__)
@@ -8,8 +8,8 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/analyst_method', methods=['POST'])
-def analyst_method():
+@app.route('/segmenter_method', methods=['POST'])
+def segmenter_method():
     if request.method == 'POST':
         print(request.form)
 
@@ -17,6 +17,7 @@ def analyst_method():
             data = json.load(file)
 
             song_title = request.form.get('songTitle')
+            model_name = request.form.get('modelName')
 
             lyrics = data.get(song_title)
 
@@ -25,7 +26,8 @@ def analyst_method():
             
             if lyrics is not None:
 
-                answer = analyst(lyrics)
+                answer = segmenter(lyrics, model_name)
+                print(answer)
 
                 answerjson = json.loads(answer)
 

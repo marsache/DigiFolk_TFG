@@ -1,12 +1,12 @@
 import ollama
 
-def analyst(song_lyrics: str):
+def segmenter(song_lyrics: str, model_name: str):
 
     # Initialize the Ollama client
     client = ollama.Client()
 
     # Define the model and the input prompt
-    model = "analyst"  # Model name
+    model = model_name  # Model name
     song = song_lyrics # Replace with song lyrics
     prompt = "Segment the following song in verses: " + song
 

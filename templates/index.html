@@ -1,36 +1,46 @@
 <head>
-    <title>First Title</title>
+    <title>Digifolk</title>
 </head>
 
 <body>
     <h1>Segmenter</h1>
-    <p>Please, introduce the name of the song.</p>
-    <input value="la calandria" type="text" id="segmenterTitle" name="segmenterTitle" required minlength="4" maxlength="20" size="10" />
-    <button onclick="performPost()">Segment</button>
+    <p>Please, introduce the name of the song to ask the desired model.</p>
+    <h2>Llama2</h2>
+    <input value="la calandria" type="text" id="segmenter_llama2" name="segmenter_llama2" required minlength="4" maxlength="20" size="10" />
+    <button onclick="performPost('segmenter_llama2')">Segment</button>
+    <div id="segmenter_llama2_response">
+        <p id="responseText"></p>
+    </div>
+    <h2>DeepseekR1</h2>
+    <input value="Song Name" type="text" id="segmenter_deepseekr1" name="segmenter_deepseekr1" required minlength="4" maxlength="20" size="10" />
+    <button onclick="performPost('segmenter_deepseekr1')">Segment</button>
+    <div id="segmenter_deepseekr1_response">
+        <p id="responseText"></p>
+    </div>
 </body>
-<div id="responseContainer">
-    <p id="responseText"></p>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
 <script>
-    function showOutput(result) {
-        document.getElementById("responseText").innerText = result;
+    function showOutput(result, containerName) {
+        document.getElementById(containerName+"_response").innerText = result;
     }
 
-    function performPost() {
-        let segmenterTitle = document.getElementById("segmenterTitle").value;
+    function performPost(segmenterName) {
+        let segmenterTitle = document.getElementById(segmenterName).value;
         $.ajax({
             type: "POST",
-            url: "{{ url_for('analyst_method') }}",
-            data: {"songTitle": segmenterTitle},
+            url: "{{ url_for('segmenter_method') }}",
+            data: {
+                "songTitle": segmenterTitle, 
+                "modelName": segmenterName
+            },
             success: function (response){
                 //let resultText = response.result;
                 let resultText = "Verses: " + response.Verses;
                 resultText += "\n\n";
                 resultText += "Syllables: " + response.Syllables;
-                showOutput(resultText);
+                showOutput(resultText, segmenterName);
             },
             error: function () {
                 showOutput("An error occurred.");
