@@ -17,6 +17,12 @@
     <div id="segmenter_deepseekr1_response">
         <p id="responseText"></p>
     </div>
+    <h2>Gemma3</h2>
+    <input value="Song Name" type="text" id="segmenter_gemma3" name="segmenter_gemma3" required minlength="4" maxlength="20" size="10" />
+    <button onclick="performPost('segmenter_gemma3')">Segment</button>
+    <div id="segmenter_gemma3_response">
+        <p id="responseText"></p>
+    </div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -27,6 +33,7 @@
     }
 
     function performPost(segmenterName) {
+        document.getElementById(segmenterName+"_response").innerText = "Processing answer...";
         let segmenterTitle = document.getElementById(segmenterName).value;
         $.ajax({
             type: "POST",
@@ -37,9 +44,14 @@
             },
             success: function (response){
                 //let resultText = response.result;
-                let resultText = "Verses: " + response.Verses;
-                resultText += "\n\n";
-                resultText += "Syllables: " + response.Syllables;
+                let resultText = ""
+                if (response.Verses != undefined && response.Syllables != undefined) {
+                    resultText = "Verses: " + response.Verses;
+                    resultText += "\n\n";
+                    resultText += "Syllables: " + response.Syllables;
+                }
+                else
+                    resultText = "Error: " + response.Error;
                 showOutput(resultText, segmenterName);
             },
             error: function () {

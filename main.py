@@ -29,9 +29,17 @@ def segmenter_method():
                 answer = segmenter(lyrics, model_name)
                 print(answer)
 
-                answerjson = json.loads(answer)
+                # answerjson = json.loads(answer)
 
-                print(answerjson)
+                # print(answerjson)
+
+                answerjson = {"Error": "Model returned invalid format."}
+
+                try:
+                    answerjson = json.loads(answer)
+                    print(answerjson)
+                except json.JSONDecodeError as e:
+                    print("Model returned invalid format.")
 
                 return answerjson
             
