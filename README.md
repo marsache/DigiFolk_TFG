@@ -18,7 +18,7 @@
 ## Docker
 - Listar todos los contenedores de Docker
   ```
-  git stash drop
+  docker container ls -a
   ```
 - Detener el contenedor
   ```
