@@ -15,6 +15,24 @@
   ollama rm segmenter
   ```
 
+## Docker
+- Listar todos los contenedores de Docker
+  ```
+  git stash drop
+  ```
+- Detener el contenedor
+  ```
+  docker container stop container_id
+  ```
+- Eliminar el contenedor detenido
+  ```
+  docker container rm container_id
+  ```
+- Iniciar el contenedor
+  ```
+  sudo docker run -dp 80:5000 container_id
+  ```
+
 ## Referencias
 - [Ollama](https://ollama.com/)
 - [OllamaTutorial](https://github.com/techwithtim/OllamaTutorial/tree/main)
