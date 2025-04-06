@@ -1,0 +1,3 @@
+[submodule "digifolk-api"]
+	path = digifolk-api
+	url = https://github.com/arome90/digifolk-api/
