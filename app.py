@@ -1,3 +1,9 @@
+import sys
+import os
+
+folder_path = os.path.join(os.path.dirname(__file__), 'digifolk-api')
+sys.path.append(folder_path)
+
 from flask import Flask, render_template, request, redirect, url_for
 import textComp 
 import LevenshteinDistances
