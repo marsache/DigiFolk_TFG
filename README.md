@@ -32,6 +32,10 @@
   ```
   sudo docker run -dp 80:5000 container_id
   ```
+- Abrir Bash en el contenedor
+  ```
+  docker exec -it container_id bash
+  ```
 
 ## Referencias
 - [Ollama](https://ollama.com/)
