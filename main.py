@@ -33,18 +33,36 @@ def segmenter_method():
 
                 # print(answerjson)
 
-                answerjson = {"Error": "Model returned invalid format."}
+                # JSON FORMAT
 
-                try:
-                    answerjson = json.loads(answer)
-                    print(answerjson)
-                except json.JSONDecodeError as e:
-                    print("Model returned invalid format.")
+                # answerjson = {"Error": "Model returned invalid format."}
 
-                return answerjson
+                # try:
+                #     answerjson = json.loads(answer)
+                #     print(answerjson)
+                # except json.JSONDecodeError as e:
+                #     print("Model returned invalid format.")
+
+                # return answerjson
+
+                return answer
             
             else:
                 return {"Error": f"Title '{song_title}' not found in the JSON data."}
+
+@app.route('/segmenter_method_lyrics', methods=['POST'])
+def segmenter_method_lyrics():
+    if request.method == 'POST':
+        print(request.form)
+
+        song_lyrics = request.form.get('songLyrics')
+        model_name = request.form.get('modelName')
+        
+        answer = segmenter(song_lyrics, model_name)
+        print(answer)
+
+        return answer
+
         
 
 if __name__ == '__main__':
