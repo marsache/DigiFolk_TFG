@@ -1,4 +1,5 @@
-FROM deepseek-r1
+#FROM deepseek-r1
+FROM stablelm2:12b
 
 # set the temperature to 1 [higher is more creative, lower is more coherent]
 PARAMETER temperature 1
